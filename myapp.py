@@ -235,13 +235,13 @@ new_case_panel = Panel(child=new_case, title='Kasus Baru')
 tabs2 = Tabs(tabs=[tot_case_panel, new_case_panel])
 
 # Add a title for the covid-19 in Indonesia visualization using Div
-html = """<h3>Persebaran Covid-19 Di Indonesia</h3>
+html = """<h3>Persebaran Jumlah Kasus Covid-19 Di Indonesia</h3>
 <b><i>2020-2021</i>
 <br>
 """
 
 # Add a title for the covid-19 in Indonesian Island visualization using Div
-html2 = """<h3>Perbandingan Persebaran Covid-19 Di Pulau-Pulau Indonesia</h3>
+html2 = """<h3>Perbandingan Persebaran Jumlah Kasus Covid-19 Di Pulau-Pulau Indonesia</h3>
 <b><i>2020-2021</i>
 <br>
 """
