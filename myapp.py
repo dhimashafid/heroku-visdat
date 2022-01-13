@@ -105,17 +105,11 @@ tabs = Tabs(tabs=[tot_case_ind_panel, new_case_ind_panel])
 ## Plotting Kasus Covid-19 untuk setiap pulau di Indonesia 
 
 
-# case Pulau Jawa 
-jawa = df2[(df2['Island'] == 'Jawa') 
+# case Pulau Jawa dan Nusa Teanggara
+jawa = df2[(df2['Island'] == 'Jawa') | (df2['Island'] == 'Nusa Tenggara')]
 jawa = jawa.groupby(['Date']).sum().reset_index()
-jawa['Island'] = 'Jawa '
+jawa['Island'] = 'Jawa dan Nusa Tenggara'
 jawa_case = ColumnDataSource(jawa)
-
-# case Nusa Tenggara
-nusatenggara = df2[df2['Island'] == 'nusatenggara']
-nusatenggara = nusatenggara.groupby(['Date']).sum().reset_index()
-nusatenggara['Island'] = 'Nusa Tenggara'
-
 
 # case Sumatera
 sumatera = df2[df2['Island'] == 'Sumatera']
@@ -164,9 +158,6 @@ tot_case.line('Date', 'TotalCases',
               color='blue', legend_label='Total Kasus Pulau Jawa dan Nusa Tenggara',
               source=jawa_case)
 tot_case.line('Date', 'TotalCases',
-              color='orange', legend_label='Total Kasus Pulau Nusa Tenggara',
-              source=nusatenggara_case)              
-tot_case.line('Date', 'TotalCases',
               color='black', legend_label='Total Kasus Pulau Kalimantan',
               source=kalimantan_case)
 tot_case.line('Date', 'TotalCases',
@@ -182,9 +173,6 @@ new_case.line('Date', 'NewCases',
 new_case.line('Date', 'NewCases',
               color='blue', legend_label='Kasus Baru Pulau Jawa dan Nusa Tenggara',
               source=jawa_case)
-new_case.line('Date', 'NewCases',
-              color='orange', legend_label='Kasus Baru Pulau Nusa Tenggara',
-              source=nusatenggara_case)              
 new_case.line('Date', 'NewCases',
               color='black', legend_label='Kasus Baru Pulau Kalimantan',
               source=kalimantan_case)
