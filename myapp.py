@@ -129,11 +129,6 @@ sulawesi = sulawesi.groupby(['Date']).sum().reset_index()
 sulawesi['Island'] = 'Sulawesi'
 sulawesi_case = ColumnDataSource(sulawesi)
 
-# case Papua dan Maluku 
-papua = df2[(df2['Island'] == 'Papua') | (df2['Island'] == 'Maluku')]
-papua = papua.groupby(['Date']).sum().reset_index()
-papua['Island'] = 'Papua dan Maluku'
-papua_case = ColumnDataSource(papua)
 
 # Definisikan figure untuk dijadikan sebagai diagram 
 tot_case = figure(x_axis_type='datetime',
@@ -179,9 +174,6 @@ new_case.line('Date', 'NewCases',
 new_case.line('Date', 'NewCases',
               color='yellow', legend_label='Kasus Baru Pulau Sulawesi',
               source=sulawesi_case)
-new_case.line('Date', 'NewCases',
-              color='purple', legend_label='Kasus Baru Pulau Papua dan Maluku',
-              source=papua_case)
 
 # Definisikan legend dengan lokasi atas kiri
 tot_case.legend.location = 'top_left'
