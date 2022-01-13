@@ -170,7 +170,7 @@ tot_case.line('Date', 'TotalCases',
               color='yellow', legend_label='Total Kasus Pulau Sulawesi',
               source=sulawesi_case)
 tot_case.line('Date', 'TotalCases',
-              color='purple', legend_label='Total Kasus Pulau Papua dan Maluku',
+              color='purple', legend_label='Total Kasus Pulau Papua',
               source=papua_case)
 tot_case.line('Date', 'TotalCases',
               color='brown', legend_label='Total Kasus Pulau Maluku',
