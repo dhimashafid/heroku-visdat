@@ -2,21 +2,21 @@ import pandas as pd
 
 # Library-library Bokeh
 from bokeh.plotting import figure, show, curdoc
+from bokeh.models.widgets import Tabs, Panel
 from bokeh.io import output_file, output_notebook
 from bokeh.models import ColumnDataSource, HoverTool, Div
-from bokeh.models.widgets import Tabs, Panel
 from bokeh.layouts import column
 from bokeh.models import NumeralTickFormatter
 
-df2 = pd.read_csv('data/covid_19_indonesia_time_series_all.csv')
+df = pd.read_csv('data/covid_19_indonesia_time_series_all.csv')
 
-df2 = df2[['Date', 'Location', 'Island', 'New Cases',
+df = df[['Date', 'Location', 'Island', 'New Cases',
            'New Recovered', 'New Deaths',
            'Total Cases', 'Total Recovered',
            'Total Deaths']]
 
-df2['Date'] = pd.to_datetime(df2['Date'])
-df2 = df2.rename(columns={"New Cases": "NewCases",
+df['Date'] = pd.to_datetime(df['Date'])
+df = df.rename(columns={"New Cases": "NewCases",
                           "New Recovered": "NewRecovered",
                           "NewDeaths": "NewDeaths",
                           "Total Cases": "TotalCases",
@@ -30,7 +30,7 @@ output_file('Covid-Indonesia.html',
 
 
 # Kasus untuk seluruh Indonesia
-indonesia = df2[df2['Location'] == 'Indonesia']
+indonesia = df[df['Location'] == 'Indonesia']
 indonesia['Island'] = 'Indonesia'
 indonesia_case = ColumnDataSource(indonesia)
 
@@ -106,31 +106,31 @@ tabs = Tabs(tabs=[tot_case_ind_panel, new_case_ind_panel])
 
 
 # case Pulau Jawa dan Nusa Tenggara
-jawa = df2[(df2['Island'] == 'Jawa') | (df2['Island'] == 'Nusa Tenggara')]
+jawa = df[(df['Island'] == 'Jawa') | (df['Island'] == 'Nusa Tenggara')]
 jawa = jawa.groupby(['Date']).sum().reset_index()
 jawa['Island'] = 'Jawa dan Nusa Tenggara'
 jawa_case = ColumnDataSource(jawa)
 
 # case Sumatera
-sumatera = df2[df2['Island'] == 'Sumatera']
+sumatera = df[df['Island'] == 'Sumatera']
 sumatera = sumatera.groupby(['Date']).sum().reset_index()
 sumatera['Island'] = 'Sumatera'
 sumatera_case = ColumnDataSource(sumatera)
 
 # case Kalimantan 
-Kalimantan = df2[df2['Island'] == 'Kalimantan']
+Kalimantan = df[df['Island'] == 'Kalimantan']
 Kalimantan = Kalimantan.groupby(['Date']).sum().reset_index()
 Kalimantan['Island'] = 'Kalimantan'
 kalimantan_case = ColumnDataSource(Kalimantan)
 
 # case Sulawesi 
-sulawesi = df2[df2['Island'] == 'Sulawesi']
+sulawesi = df[df['Island'] == 'Sulawesi']
 sulawesi = sulawesi.groupby(['Date']).sum().reset_index()
 sulawesi['Island'] = 'Sulawesi'
 sulawesi_case = ColumnDataSource(sulawesi)
 
 # case Papua dan Maluku 
-papua = df2[(df2['Island'] == 'Papua') | (df2['Island'] == 'Maluku')]
+papua = df[(df['Island'] == 'Papua') | (df['Island'] == 'Maluku')]
 papua = papua.groupby(['Date']).sum().reset_index()
 papua['Island'] = 'Papua dan Maluku'
 papua_case = ColumnDataSource(papua)
@@ -301,25 +301,25 @@ tabs = Tabs(tabs=[tot_case_ind_panel, new_case_ind_panel])
 
 
 # case Pulau Jawa dan Nusa Tenggara
-jawa = df2[(df2['Island'] == 'Jawa') | (df2['Island'] == 'Nusa Tenggara')]
+jawa = df[(df['Island'] == 'Jawa') | (df['Island'] == 'Nusa Tenggara')]
 jawa = jawa.groupby(['Date']).sum().reset_index()
 jawa['Island'] = 'Jawa dan Nusa Tenggara'
 jawa_case = ColumnDataSource(jawa)
 
 # case Sumatera
-sumatera = df2[df2['Island'] == 'Sumatera']
+sumatera = df[df['Island'] == 'Sumatera']
 sumatera = sumatera.groupby(['Date']).sum().reset_index()
 sumatera['Island'] = 'Sumatera'
 sumatera_case = ColumnDataSource(sumatera)
 
 # case Kalimantan 
-Kalimantan = df2[df2['Island'] == 'Kalimantan']
+Kalimantan = df[df['Island'] == 'Kalimantan']
 Kalimantan = Kalimantan.groupby(['Date']).sum().reset_index()
 Kalimantan['Island'] = 'Kalimantan'
 kalimantan_case = ColumnDataSource(Kalimantan)
 
 # case Sulawesi 
-sulawesi = df2[df2['Island'] == 'Sulawesi']
+sulawesi = df[df['Island'] == 'Sulawesi']
 sulawesi = sulawesi.groupby(['Date']).sum().reset_index()
 sulawesi['Island'] = 'Sulawesi'
 sulawesi_case = ColumnDataSource(sulawesi)
